@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Compressed CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.4.3/dist/css/foundation.min.css" integrity="sha256-GSio8qamaXapM8Fq9JYdGNTvk/dgs+cMLgPeevOYEx0= sha384-wAweiGTn38CY2DSwAaEffed6iMeflc0FMiuptanbN4J+ib+342gKGpvYRWubPd/+ sha512-QHEb6jOC8SaGTmYmGU19u2FhIfeG+t/hSacIWPpDzOp5yygnthL3JwnilM7LM1dOAbJv62R+/FICfsrKUqv4Gg==" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <!-- Compressed JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.4.3/dist/js/foundation.min.js" integrity="sha256-mRYlCu5EG+ouD07WxLF8v4ZAZYCA6WrmdIXyn1Bv9Vk= sha384-KzKofw4qqetd3kvuQ5AdapWPqV1ZI+CnfyfEwZQgPk8poOLWaabfgJOfmW7uI+AV sha512-0gHfaMkY+Do568TgjJC2iMAV0dQlY4NqbeZ4pr9lVUTXQzKu8qceyd6wg/3Uql9qA2+3X5NHv3IMb05wb387rA==" crossorigin="anonymous"></script>
+    <title>Form</title>
+    <style>
+        .padding {
+            padding-top:20px ;
+            max-width:80% !important;
+          }
+
+          .err {
+            background:#FBE6E6;
+            border: 1px solid red;
+            padding:5px 20px;
+
+          }
+
+    </style>
+
+</head>
+<body>
+    <form  th:action="@{/form}" th:object="${formElements}" method="post" class="grid-container fluid padding">
+        <div class="">
+            <label >Name:</label>
+            <input type="text" th:field="*{name}">
+            <p th:if="${#fields.hasErrors('name')}" th:text="*{error}" class="err"></p>
+
+        </div>
+        <div>
+            <label>Job:</label>
+            <input type="text" th:field="*{job}">
+            <p th:if="${#fields.hasErrors('job')}" th:text="*{error}" class="err"></p>
+
+        </div>
+        <div>
+            <label>Age:</label>
+            <input type="number" th:field="*{age}">
+            <p th:if="${#fields.hasErrors('age')}" th:text="*{error}" class="err"></p>
+
+        </div>
+        <div>
+            <label>Adresse:</label>
+            <input type="text" th:field="*{adresse}">
+            <p th:if="${#fields.hasErrors('adresse')}" th:text="*{error}" class="err"></p>
+
+        </div>
+        <div>
+            <label>Email:</label>
+            <input type="email" th:field="*{email}">
+            <p th:if="${#fields.hasErrors('email')}" th:text="*{error}" class="err"></p>
+
+        </div>
+        <div>
+            <label  >Phone Nr.:</label>
+            <input type="text" th:field="*{phone}">
+            <p th:if="${#fields.hasErrors('phone')}" th:text="*{error}" class="err"></p>
+
+        </div>
+        <button class="primary button" th:classappend="${condition} ? 'primary' : 'warning'">submit</button>
+    </form>
+</body>
+</html>
